@@ -130,10 +130,7 @@
             border: 1px solid var(--border-color-light);
             margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            opacity: 0; transform: translateY(20px);
-            animation: cardFadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
-        @keyframes cardFadeInUp { to { opacity: 1; transform: translateY(0); } }
         .custom-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
@@ -354,9 +351,13 @@
         .page { display: none; }
         .page.active {
             display: block;
-            animation: pageSlideFadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            opacity: 0; /* Aggiunto per l'animazione */
+            animation: pageSlideFadeIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
         }
-        @keyframes pageSlideFadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pageSlideFadeIn { 
+            from { opacity: 0; transform: translateY(15px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
         /* --- Sezione Regole: Stili Uniformi per Titoli e Icone (CORRETTO) --- */
         #regole .custom-card h3 {
@@ -1509,7 +1510,7 @@
                 places_market_title: "Fish Market",
                 places_market_desc: "Experience the authentic atmosphere of the largest fish market on the Adriatic. An explosion of sounds, colors, and scents where you can discover the local catch.",
                 places_isolaverde_title: "Isola Verde Beach",
-                places_isolaverde_desc: "An oasis of tranquility surrounded by greenery, with a sandy beach and shallow waters, ideal for those seeking relaxation and contact with nature.",
+                places_isolaverde_desc: "An oasis of tranquility surrounded by greenery, with a sandy beach and shallow waters, ideal for those seeking relaxation and contact with a nature.",
                 places_clocktower_title: "Sant'Andrea Clock Tower",
                 places_clocktower_desc: "Discover one of the oldest working tower clocks in the world. Climb to the top to enjoy a breathtaking panoramic view of the city and the lagoon.",
                 places_bosco_title: "Bosco Nordio Nature Reserve",
@@ -1759,16 +1760,25 @@
 
         function showPage(pageId, fromHistory = false) {
             const targetPage = document.getElementById(pageId);
-
+        
             if (!targetPage) {
                 console.error(`Page with ID "${pageId}" not found. Showing home.`);
                 showPage(homePageId, fromHistory);
                 return;
             }
-
-            pages.forEach(p => p.classList.remove('active'));
+        
+            pages.forEach(p => {
+                p.classList.remove('active');
+                p.style.display = 'none'; // Nascondi esplicitamente tutte le pagine
+            });
+        
+            targetPage.style.display = 'block'; // Mostra la pagina target
+        
+            // Forza il reflow del browser prima di aggiungere la classe per l'animazione
+            void targetPage.offsetWidth; 
+        
             targetPage.classList.add('active');
-
+        
             const isHome = (pageId === homePageId);
             backButton.style.display = isHome ? 'none' : 'inline-block';
             
@@ -1778,12 +1788,12 @@
                     history.pushState({ pageId: pageId }, '', newUrl);
                 }
             }
-
+        
             applyTranslations(currentLanguage);
             
             if (pageId === 'benvenuto') getDailyTip();
             if (pageId === 'checkin') initializeCheckinSteps();
-
+        
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
