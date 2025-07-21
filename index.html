@@ -405,8 +405,8 @@
             .step-content h3 { font-size: 1.4rem; }
             .step-content p { font-size: 0.9rem; }
             .icon-button-wrapper { padding: 1rem; border-radius: 1rem;}
-            .icon-button-wrapper i { font-size: 1.8rem; }
-            .icon-button-wrapper span { font-size: 0.7rem; }
+            .icon-button-wrapper i { font-size: 2rem; }
+            .icon-button-wrapper span { font-size: 0.75rem; }
             .btn { padding: 0.7rem 1.5rem; font-size: 0.85rem; }
             .btn-sm { padding: 0.4rem 1rem; font-size: 0.75rem;}
             #checkin-steps-container { min-height: 380px; }
@@ -420,9 +420,9 @@
             #header-custom-logo { height: 36px; }
             .step-content h3 { font-size: 1.3rem; }
             .icon-button-wrapper { padding: 0.8rem; border-radius: 0.75rem;}
-            .icon-button-wrapper i { font-size: 1.6rem; }
-            .icon-button-wrapper span { font-size: 0.65rem; }
-            .address-copy-wrapper { flex-wrap: wrap; } /* Permette al pulsante copia di andare a capo */
+            .icon-button-wrapper i { font-size: 1.8rem; }
+            .icon-button-wrapper span { font-size: 0.7rem; }
+            .address-copy-wrapper { flex-wrap: nowrap; justify-content: center; }
         }
 
         /* Stile Mappa */
@@ -435,6 +435,7 @@
         .address-copy-wrapper { /* Contenitore indirizzo + pulsante copia */
             display: flex; align-items: center; gap: 0.5rem;
             margin-bottom: 1.5rem;
+            justify-content: center;
         }
 
         /* Griglia Market */
@@ -753,8 +754,8 @@
 
         <div id="checkout" class="page" data-title="Procedura Check-out">
              <div class="custom-card">
-                 <h2 class="flex justify-between items-center"> <span data-translate-key="checkout_title_new">Come Effettuare il Check-out</span>
-                    <span class="text-sm font-normal text-light-secondary" data-translate-key="checkout_time_new">(Entro le 10:00)</span>
+                 <h2 class="flex flex-col sm:flex-row justify-between items-start sm:items-center"> <span data-translate-key="checkout_title_new">Come Effettuare il Check-out</span>
+                    <span class="text-sm font-normal text-light-secondary mt-1 sm:mt-0" data-translate-key="checkout_time_new">(Entro le 10:00)</span>
                 </h2>
                 <p data-translate-key="checkout_intro_new">Per aiutarci a preparare al meglio l'appartamento per i prossimi ospiti, ti chiediamo di seguire queste semplici indicazioni prima di lasciare l'alloggio:</p>
                 <ul class="styled-list mt-6">
@@ -772,7 +773,7 @@
                 <h2 data-translate-key="directions_title" class="text-center">Come Arrivare al Vostro Rifugio sul Mare</h2>
                 <p data-translate-key="directions_intro" class="text-center text-light-secondary mb-8">Raggiungerci è semplice. L'alloggio si trova nella tranquilla località di Bacucco, facilmente accessibile in auto.</p>
 
-                <div class="address-copy-wrapper justify-center">
+                <div class="address-copy-wrapper">
                     <p id="property-address" class="text-light-secondary font-mono text-sm my-0">Via delle Nazioni Unite, 34, 30015 Bacucco VE</p>
                     <button onclick="copyToClipboard(document.getElementById('property-address').textContent, this)" class="btn btn-secondary btn-sm py-1 px-2" aria-label="Copia indirizzo">
                         <i class="fas fa-copy m-0"></i> <span class="sr-only" data-translate-key="btn_copy">Copia</span>
@@ -807,12 +808,6 @@
                        <button id="copy-wifi-btn" onclick="copyToClipboard('51D42GNJ', this)" class="btn btn-secondary btn-sm ml-2 align-baseline">
                            <i class="fas fa-copy"></i> <span data-translate-key="btn_copy">Copia</span>
                        </button>
-                </div>
-                <div>
-                       <a href="WIFI:T:WPA;S:WebPocket-3DB0;P:51D42GNJ;;" class="btn btn-primary">
-                           <i class="fas fa-signal"></i> <span data-translate-key="wifi_connect_button">Connettiti al Wi-Fi</span>
-                       </a>
-                       <p class="text-xs text-light-secondary mt-2" data-translate-key="wifi_connect_instruction">Connessione automatica (solo da mobile)</p>
                 </div>
             </div>
         </div>
@@ -879,7 +874,7 @@
                  </div>
              </div>
              <div class="custom-card">
-                 <h3 class="border-b border-border-color-light pb-3 mb-6" data-translate-key="market_section_specialty">Dove Comprare... Carne, Pesce, Gastronomia</h3>
+                 <h3 class="border-b border-border-color-light pb-3 mb-6" data-translate-key="market_section_specialty">Dove Comprare... Carne, Pesce, e Salumi</h3>
                  <div class="shop-list">
                      <div class="shop-item">
                          <img src="https://i.imgur.com/wPDVQiv.jpeg" alt="Gastronomia Salumeria al Salone" onerror="this.onerror=null; this.src='https://placehold.co/600x180/cccccc/ffffff?text=Immagine+non+disp.';">
@@ -1282,7 +1277,7 @@
                 market_dist_ao: "1 min a piedi (150m)",
                 market_dist_moretto: "10 min a piedi / 2 in auto (850m)",
                 market_dist_ipercoop: "10 min in auto (5.5 km)",
-                market_section_specialty: "Dove Comprare... Carne, Pesce, Gastronomia",
+                market_section_specialty: "Dove Comprare... Carne, Pesce, e Salumi",
                 market_salumeria_name: "Gastronomia Salumeria 'al Salone'",
                 market_salumeria_loc: "10 min in auto (5 km)",
                 market_salumeria_desc: "Ampio assortimento di salumi, formaggi, vini, conserve e dolci artigianali. Luogo ideale per gli appassionati di gastronomia e buon cibo.",
@@ -1484,7 +1479,7 @@
                 market_dist_ao: "1 min walk (150m)",
                 market_dist_moretto: "10 min walk / 2 by car (850m)",
                 market_dist_ipercoop: "10 min by car (5.5 km)",
-                market_section_specialty: "Where to Buy... Meat, Fish, Delicatessen",
+                market_section_specialty: "Where to Buy... Meat, Fish, & Cured Meats",
                 market_salumeria_name: "Delicatessen 'al Salone'",
                 market_salumeria_loc: "10 min by car (5 km)",
                 market_salumeria_desc: "Wide assortment of cured meats, cheeses, wines, preserves, and artisanal sweets. Described as an “ideal place for lovers of gastronomy and good food.”",
